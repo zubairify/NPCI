@@ -8,8 +8,8 @@ public class Copy {
 		FileInputStream inFile = null;
 		FileOutputStream outFile = null;
 		try {
-			inFile = new FileInputStream("ms.exe");//21 MB approx
-			outFile = new FileOutputStream("newms.exe");
+			inFile = new FileInputStream("/Volums/Dump/whatever.exe");//21 MB approx
+			outFile = new FileOutputStream("/Volums/Dump/whatever2.exe");
 			int ch = 0;
 			long ms1 = System.currentTimeMillis();
 			while(true) {

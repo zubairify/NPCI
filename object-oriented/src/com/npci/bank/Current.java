@@ -9,7 +9,7 @@ public class Current extends Accounts {
 	public Current(String holder) {
 		super(holder, INIT_CURRENT_BAL);
 		overdraft = OVERDRAFT_LIMIT;
-		txns[idx ++] = new CurrentTransaction("OB", balance, balance, overdraft);
+		txns.add(new CurrentTransaction("OB", balance, balance, overdraft));
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class Current extends Accounts {
 			balance += overdraft - OVERDRAFT_LIMIT;
 			overdraft = OVERDRAFT_LIMIT;
 		}
-		txns[idx ++] = new CurrentTransaction("CR", amount, balance, overdraft);
+		txns.add(new CurrentTransaction("CR", amount, balance, overdraft));
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class Current extends Accounts {
 				overdraft += balance;
 				balance = MIN_CURRENT_BAL;
 			}
-			txns[idx ++] = new CurrentTransaction("DR", amount, balance, overdraft);
+			txns.add(new CurrentTransaction("DR", amount, balance, overdraft));
 		} else
 			throw new BalanceException("Insufficient balance!");
 	}

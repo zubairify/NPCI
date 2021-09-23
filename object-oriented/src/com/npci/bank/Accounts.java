@@ -1,5 +1,7 @@
 package com.npci.bank;
 
+import java.util.ArrayList;
+
 /**
  * This class represents generalised bank account.
  * @author Zubair Shaikh
@@ -10,8 +12,7 @@ public abstract class Accounts implements Bank {
 	private String holder;
 	protected double balance;
 	
-	protected Transaction[] txns;
-	protected int idx;
+	protected ArrayList<Transaction> txns;
 	
 	private static int autogen = INIT_ACNT_NO;
 	
@@ -28,7 +29,7 @@ public abstract class Accounts implements Bank {
 		this.acntNo = autogen ++;
 		this.holder = holder;
 		this.balance = balance;
-		txns = new Transaction[10];
+		txns = new ArrayList<Transaction>();
 	}
 	
 	public void summary() {
@@ -39,7 +40,7 @@ public abstract class Accounts implements Bank {
 	
 	public void deposit(double amount) {
 		balance += amount;
-		txns[idx ++] = new Transaction("CR", amount, balance);
+		txns.add(new Transaction("CR", amount, balance));
 	}
 
 	public double getBalance() {
@@ -48,7 +49,7 @@ public abstract class Accounts implements Bank {
 	
 	public void statement() {
 		System.out.println("Statement of A/C No: " + acntNo);
-		for(int i=0; i<idx; i++) 
-			System.out.println(txns[i]);
+		for(Transaction t : txns) 
+			System.out.println(t);
 	}
 }
